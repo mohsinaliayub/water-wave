@@ -29,7 +29,7 @@ struct HomeView: View {
                         .offset(y: -1)
                     
                     // Wave Form Shape
-                    WaterWave(progress: 0.5, waveHeight: 0.1, offset: startAnimation)
+                    WaterWave(progress: progress, waveHeight: 0.1, offset: startAnimation)
                         .fill(.blue)
                         // water drops
                         .overlay {
@@ -65,7 +65,18 @@ struct HomeView: View {
                             Image(systemName: "drop.fill")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .padding()
+                                .padding(20)
+                        }
+                        .overlay(alignment: .bottom) {
+                            Button(action: { progress += 0.01 }) {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 40, weight: .black))
+                                    .foregroundStyle(.blue)
+                                    .shadow(radius: 2)
+                                    .padding(25)
+                                    .background(.white, in: Circle())
+                            }
+                            .offset(y: 40)
                         }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
