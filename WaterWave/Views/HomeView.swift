@@ -29,7 +29,7 @@ struct HomeView: View {
                         .offset(y: -1)
                     
                     // Wave Form Shape
-                    WaterWave(progress: progress, waveHeight: 0.1, offset: startAnimation)
+                    WaterWave(progress: progress, waveHeight: 0.07, offset: startAnimation)
                         .fill(.blue)
                         // water drops
                         .overlay {
