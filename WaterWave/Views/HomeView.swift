@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var progress: CGFloat = 0.5
+    @State var startAnimation: CGFloat = 0
+    
     var body: some View {
         VStack {
             // MARK: Wave Form
@@ -26,7 +29,7 @@ struct HomeView: View {
                         .offset(y: -1)
                     
                     // Wave Form Shape
-                    WaterWave(progress: 0.5, waveHeight: 0.1, offset: size.width)
+                    WaterWave(progress: 0.5, waveHeight: 0.1, offset: startAnimation)
                         .fill(.blue)
                         // water drops
                         .overlay {
@@ -66,6 +69,14 @@ struct HomeView: View {
                         }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                .onAppear {
+                    // Looping animation
+                    withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                        // If you set value less than the rect width it will not finish completely.
+//                        startAnimation = size.width - 100
+                        startAnimation = size.width
+                    }
+                }
             }
             .frame(height: 350)
         }
